@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Blogs</title>
+    <style>
+        .blog {
+            padding: 20px 0px;
+        }
+        .blog .info span {
+            padding-right: 10px;
+        }
+        .blog .summary {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+ 
+<div class="header">
+    <h1>My Blogs</h1>
+</div>
+ 
+{% for article in article_list %}
+    <div class="blog">
+        <div class="title">
+            <a href="{% url 'app:detail' article.id %}"><h2>{{ article.title }}</h2></a>
+        </div>
+        <div class="info">
+            <span class="category" style="color: #ff9900;">{{ article.category }}</span>
+            <span class="author" style="color: #4a86e8">{{ article.author }}</span>
+            <span class="created" style="color: #6aa84f">{{ article.created_time|date:"Y-m-d H:i" }}</span>
+        </div>
+        <div class="summary">
+            {{ article.context|truncatewords:100 }}
+        </div>
+    </div>
+{% endfor %}
+ 
+</body>
+</html>
